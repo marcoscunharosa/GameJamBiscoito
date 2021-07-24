@@ -1,11 +1,11 @@
 export default class Follower{
-    constructor(){
+    constructor(positionX, positionY){
         this.sourceX = 0;
         this.sourceY = 0;
         this.width = 104;
         this.height = 199;
-        this.x = 446;
-        this.y = 46;
+        this.x = positionX;
+        this.y = positionY - this.height;
         this.sprites = new Image();
         this.sprites.src = 'assets/follower.png'
         this.createAnimation();
@@ -13,7 +13,7 @@ export default class Follower{
     draw(context, canvas, frames){
 
         context.fillStyle = '#15151a';
-        context.fillRect(this.x, this.y, this.width, this.height);
+        //context.fillRect(this.x, this.y, this.width, this.height);
 
         this.updateCurrentFrame(frames);
         this.sourceX = this.movements[this.currentFrame].sourceX;
@@ -26,6 +26,12 @@ export default class Follower{
             this.x, this.y,
             this.width, this.height
         );
+    }
+    move(){
+        this.x -= 6;
+    }
+    remove(context){
+        context.fillRect(this.x, this.y, this.width, this.height);
     }
 
     update(){

@@ -1,25 +1,17 @@
-export default class Biscoiteiro{
+export default class RunnerFollower{
     constructor(positionX, positionY){
-        this.sourceX = 45;
+        this.sourceX = 0;
         this.sourceY = 0;
-        this.width = 109;
-        this.height = 159;
+        this.width = 104;
+        this.height = 199;
         this.x = positionX;
         this.y = positionY - this.height;
         this.sprites = new Image();
-        this.sprites.src = 'assets/biscoiteiro.png'
+        this.sprites.src = 'assets/follower.png'
         this.velocity = 0;
         this.gravity = 0.25;
-        this.pulo = 12;
+        this.pulo = 10;
         this.createAnimation();
-    }
-    fall(){
-        this.velocity += this.gravity;
-        this.y += this.velocity;
-    }
-    jump(size){
-        this.velocity = - 10;
-        this.y += this.velocity;
     }
     draw(context, canvas, frames){
 
@@ -38,6 +30,15 @@ export default class Biscoiteiro{
             this.width, this.height
         );
     }
+    jump(number){
+        this.velocity = - this.pulo;
+        this.y += this.velocity;
+    }
+
+    fall(){
+        this.velocity += this.gravity;
+        this.y += this.velocity;
+    }
 
     getPushed(){
         this.x -= 6;
@@ -48,7 +49,7 @@ export default class Biscoiteiro{
     }
 
     updateCurrentFrame(frames){
-        const frameInterval = 6;
+        const frameInterval = 8;
         const exceedFrame = frames % frameInterval === 0;
         if(exceedFrame){
             const incrementBases = 1;
@@ -59,14 +60,9 @@ export default class Biscoiteiro{
     }
     createAnimation(){
         this.movements = [
-            {sourceX: 45, width: 109},
-            {sourceX: 187, width: 167},
-            {sourceX: 383, width: 128},
-            {sourceX: 578, width: 106},
-            {sourceX: 741, width: 134},
-            {sourceX: 902, width: 176},
-            {sourceX: 1096, width: 142},
-            {sourceX: 1297, width: 143},
+            {sourceX: 0, width: 104},
+            {sourceX: 177, width: 105},
+            {sourceX: 357, width: 109},
         ];
         this.currentFrame = 0;
     }
