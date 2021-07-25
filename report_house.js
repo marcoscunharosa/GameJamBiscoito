@@ -1,33 +1,17 @@
-export default class Biscoiteiro{
+export default class ReportHouse{
     constructor(positionX, positionY){
-        this.sourceX = 45;
+        this.sourceX = 0;
         this.sourceY = 0;
-        this.width = 109;
-        this.height = 159;
+        this.width = 182;
+        this.height = 188;
         this.x = positionX;
         this.y = positionY - this.height;
         this.sprites = new Image();
-        this.sprites.src = 'assets/biscoiteiro.png'
-        this.velocity = 0;
-        this.gravity = 0.25;
-        this.pulo = 12;
-        this.coliding = false;
-        this.isBeingPushed = false;
-        this.inicialX = this.x;
+        this.sprites.src = 'assets/report_house.png'
         this.createAnimation();
+        this.limit = 4;
+        this.numberOfColisions = 0;
     }
-    fall(){
-        this.velocity += this.gravity;
-        this.y += this.velocity;
-    }
-    jump(size){
-        this.velocity = - 10;
-        this.y += this.velocity;
-    }
-    run(){
-        this.x += 2;
-    }
-
     draw(context, canvas, frames){
 
         context.fillStyle = '#15151a';
@@ -44,10 +28,18 @@ export default class Biscoiteiro{
             this.x, this.y,
             this.width, this.height
         );
-    }
 
-    getPushed(){
+        context.font = '35px monospace';
+        context.fillStyle = 'white';
+        context.textAlign = 'right';
+        context.fillText(`${this.numberOfColisions}/${this.limit}`, this.x, this.y);
+        context.fillStyle = '#15151a';
+    }
+    move(){
         this.x -= 6;
+    }
+    remove(context){
+        context.fillRect(this.x, this.y, this.width, this.height);
     }
 
     update(){
@@ -55,7 +47,7 @@ export default class Biscoiteiro{
     }
 
     updateCurrentFrame(frames){
-        const frameInterval = 6;
+        const frameInterval = 11;
         const exceedFrame = frames % frameInterval === 0;
         if(exceedFrame){
             const incrementBases = 1;
@@ -66,14 +58,9 @@ export default class Biscoiteiro{
     }
     createAnimation(){
         this.movements = [
-            {sourceX: 45, width: 109},
-            {sourceX: 187, width: 167},
-            {sourceX: 383, width: 128},
-            {sourceX: 578, width: 106},
-            {sourceX: 741, width: 134},
-            {sourceX: 902, width: 176},
-            {sourceX: 1096, width: 142},
-            {sourceX: 1297, width: 143},
+            {sourceX: 0, width: 182},
+            {sourceX: 204, width: 182},
+            {sourceX: 408, width: 182},
         ];
         this.currentFrame = 0;
     }

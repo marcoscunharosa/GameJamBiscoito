@@ -11,6 +11,8 @@ export default class RunnerFollower{
         this.velocity = 0;
         this.gravity = 0.25;
         this.pulo = 10;
+        this.inicialX = this.x;
+        this.isBeingPushed = false;
         this.createAnimation();
     }
     draw(context, canvas, frames){
@@ -34,7 +36,7 @@ export default class RunnerFollower{
         this.velocity = - this.pulo;
         this.y += this.velocity;
     }
-
+    
     fall(){
         this.velocity += this.gravity;
         this.y += this.velocity;
@@ -42,6 +44,9 @@ export default class RunnerFollower{
 
     getPushed(){
         this.x -= 6;
+    }
+    run(){
+        this.x += 2;
     }
 
     update(){
