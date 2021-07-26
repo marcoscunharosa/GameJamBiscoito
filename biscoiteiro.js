@@ -1,3 +1,4 @@
+import Game from "./game.js";
 export default class Biscoiteiro{
     constructor(positionX, positionY){
         this.sourceX = 45;
@@ -15,6 +16,7 @@ export default class Biscoiteiro{
         this.isBeingPushed = false;
         this.inicialX = this.x;
         this.createAnimation();
+        this.nakedMode = false;
     }
     fall(){
         this.velocity += this.gravity;
@@ -47,7 +49,7 @@ export default class Biscoiteiro{
     }
 
     getPushed(){
-        this.x -= 6;
+        this.x -= Game.velocity;
     }
 
     update(){
@@ -55,7 +57,13 @@ export default class Biscoiteiro{
     }
 
     updateCurrentFrame(frames){
-        const frameInterval = 6;
+        var frameInterval = Math.floor(6 - ((Game.velocity - 6)/2));
+        if(this.nakedMode){
+            frameInterval = 3;
+        }
+        if(frameInterval < 1){
+            frameInterval = 1;
+        }
         const exceedFrame = frames % frameInterval === 0;
         if(exceedFrame){
             const incrementBases = 1;

@@ -13,6 +13,7 @@ export default class RunnerFollower{
         this.pulo = 10;
         this.inicialX = this.x;
         this.isBeingPushed = false;
+        this.coliding = false;
         this.createAnimation();
     }
     draw(context, canvas, frames){
@@ -32,7 +33,7 @@ export default class RunnerFollower{
             this.width, this.height
         );
     }
-    jump(number){
+    jump(){
         this.velocity = - this.pulo;
         this.y += this.velocity;
     }

@@ -1,3 +1,4 @@
+import Game from "./game.js";
 export default class Follower{
     constructor(positionX, positionY){
         this.sourceX = 0;
@@ -28,7 +29,7 @@ export default class Follower{
         );
     }
     move(){
-        this.x -= 6;
+        this.x -= Game.velocity;
     }
     remove(context){
         context.fillRect(this.x, this.y, this.width, this.height);

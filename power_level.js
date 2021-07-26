@@ -1,20 +1,29 @@
 export default class PowerLevel{
     constructor(){
         this.bar_level = 0;
-        this.maxFollowers = 30;
+        this.maxFollowers = 20;
         this.bar = document.getElementById('power_bar_level');
         this.container = document.getElementById('power_bar');
         this.bar_width = this.container.clientWidth;
+        this.draw();
+        this.catches = 0;
+        this.full = false;
     }
 
     addPoints(){
-        if(this.bar_level < this.maxFollowers){
-            this.bar_level++;
-            this.draw();
+        this.catches++;
+        if(!this.full){
+            if(this.bar_level < this.maxFollowers - 1){
+                this.bar_level++;
+                this.draw();
+            }
+            else{
+                this.bar_level++;
+                this.draw();
+                this.full = true;
+            }
         }
-        else{
-            this.restartBar();
-        }
+        
     }
     restartBar(){
         this.bar_level = 0;

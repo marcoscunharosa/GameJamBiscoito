@@ -25,6 +25,9 @@ body{
     margin: 0 auto;
     z-index : 0;
 }
+#infoBar{
+    display: block;
+}
 
 #score {
     text-align: center;

@@ -46,7 +46,7 @@ export default class Creator{
         const lastFloor = this.game.floors[this.game.floors.length - 1];
         if((lastFloor.x + lastFloor.customWidth <= this.game.canvas.width - random) 
         && (this.game.canvas.width - lastFloor.x + lastFloor.customWidth >= random)){
-            const randomWidth = Math.floor(Math.random() * 1000) + 500;
+            const randomWidth = Math.floor(Math.random() * 3000) + 500;
             this.addFloor(randomWidth, this.game.canvas.width);
             this.lastFloorWidth = randomWidth;
             this.createFollowers();

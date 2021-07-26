@@ -1,3 +1,4 @@
+import Game from "./game.js";
 export default class Background{
     constructor(){
         this.sourceX = 0;
@@ -27,7 +28,7 @@ export default class Background{
         
     }
     update(){
-        const movChao = 6; //a cada quadro, 1 pra frente
+        const movChao = Game.velocity; //a cada quadro, 1 pra frente
         const repeteEm = 1000;
         const movimentacao = this.x - movChao;
 

@@ -5,15 +5,18 @@ export default class ReportLevel{
         this.bar = document.getElementById('report_bar_level');
         this.container = document.getElementById('report_bar');
         this.bar_width = this.container.clientWidth;
+        this.lose = false;
+        this.draw();
     }
 
     addPoints(){
-        if(this.bar_level < this.maxMissesReport){
+        if(this.bar_level < this.maxMissesReport - 1){
             this.bar_level++;
             this.draw();
         }
         else{
-            this.restartBar();
+            this.lose = true;
+            this.draw();
         }
     }
     restartBar(){

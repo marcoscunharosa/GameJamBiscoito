@@ -1,3 +1,4 @@
+import Game from "./game.js";
 export default class Floor{
     constructor(customWidth, x){
         this.sourceX = 0;
@@ -22,7 +23,7 @@ export default class Floor{
         );
     }
     move(){
-        this.x -= 6;
+        this.x -= Game.velocity;
     }
     createCanvas(){
         this.canvas = document.querySelector('canvas');
